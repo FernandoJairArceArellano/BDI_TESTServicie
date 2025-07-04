@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "UGTP_TBL_Transaccion")
@@ -35,6 +36,8 @@ public class Transaccion {
     @JoinColumn(name = "idDetalleTarifa")
     @OneToOne
     private DetalleTarifa detalleTarifa;
+
+    private Date fecha;
 
     public int getIdOperacion() {
         return idOperacion;
@@ -82,6 +85,14 @@ public class Transaccion {
 
     public void setDetalleTarifa(DetalleTarifa detalleTarifa) {
         this.detalleTarifa = detalleTarifa;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
 }

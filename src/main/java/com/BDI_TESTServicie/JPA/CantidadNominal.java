@@ -7,16 +7,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "UGTP_TBL_CantidadNominal")
 public class CantidadNominal {
 
+    public CantidadNominal(BigDecimal bigDecimal, int par) {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCantidadNominal;
 
-    private double valor;
+    private BigDecimal valor;
 
     @JoinColumn(name = "tipo")
     @OneToOne
@@ -30,11 +34,11 @@ public class CantidadNominal {
         this.idCantidadNominal = idCantidadAsignada;
     }
 
-    public double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 

@@ -6,11 +6,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "UGTP_TBL_Tarifa")
 @Schema(description = "Entidad que representa a una tarifa")
 public class Tarifa {
+
+    public Tarifa(BigDecimal bigDecimal, BigDecimal bigDecimal1) {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

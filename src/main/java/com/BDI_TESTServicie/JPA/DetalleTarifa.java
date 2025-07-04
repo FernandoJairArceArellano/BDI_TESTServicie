@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "UGTP_TBL_DetalleTarifa")
@@ -20,13 +21,13 @@ public class DetalleTarifa {
     @ManyToOne
     private Tarifa tarifa;
 
-    private double gasEnExceso;
+    private BigDecimal gasEnExceso;
 
-    private double cargoUso;
+    private BigDecimal cargoUso;
 
-    private double cargoGasEnExceso;
+    private BigDecimal cargoGasEnExceso;
 
-    private double totalAFacturar;
+    private BigDecimal totalAFacturar;
 
     public int getIndDetalleTarifa() {
         return indDetalleTarifa;
@@ -44,35 +45,35 @@ public class DetalleTarifa {
         this.tarifa = tarifa;
     }
 
-    public double getGasEnExceso() {
+    public BigDecimal getGasEnExceso() {
         return gasEnExceso;
     }
 
-    public void setGasEnExceso(double gasEnExceso) {
+    public void setGasEnExceso(BigDecimal gasEnExceso) {
         this.gasEnExceso = gasEnExceso;
     }
 
-    public double getCargoUso() {
+    public BigDecimal getCargoUso() {
         return cargoUso;
     }
 
-    public void setCargoUso(double cargoUso) {
+    public void setCargoUso(BigDecimal cargoUso) {
         this.cargoUso = cargoUso;
     }
 
-    public double getCargoGasEnExceso() {
+    public BigDecimal getCargoGasEnExceso() {
         return cargoGasEnExceso;
     }
 
-    public void setCargoGasEnExceso(double cargoGasEnExceso) {
+    public void setCargoGasEnExceso(BigDecimal cargoGasEnExceso) {
         this.cargoGasEnExceso = cargoGasEnExceso;
     }
 
-    public double getTotalAFacturar() {
+    public BigDecimal getTotalAFacturar() {
         return totalAFacturar;
     }
 
-    public void setTotalAFacturar(double totalAFacturar) {
+    public void setTotalAFacturar(BigDecimal totalAFacturar) {
         this.totalAFacturar = totalAFacturar;
     }
 

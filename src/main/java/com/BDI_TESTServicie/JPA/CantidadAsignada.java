@@ -8,11 +8,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "UGTP_TBL_CantidadAsignada")
 @Schema(description = "Entidad que representa al registro de la cantidad Asignada")
 public class CantidadAsignada {
+
+    public CantidadAsignada(BigDecimal bigDecimal, int par) {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

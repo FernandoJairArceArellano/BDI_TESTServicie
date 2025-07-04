@@ -15,9 +15,9 @@ public class Zona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idZona;
-    
+
     private String nombreZona;
-    
+
     @JoinColumn(name = "tipo")
     @OneToOne
     private TipoZona tipoZona;
@@ -44,6 +44,9 @@ public class Zona {
 
     public void setTipoZona(TipoZona tipoZona) {
         this.tipoZona = tipoZona;
+    }
+
+    public Zona(String toString, int par) {
     }
 
 }

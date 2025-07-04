@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 
 @Schema(description = "Objeto de Respuesta para las operaciones del sistema")
-public class Restult<T> {
+public class Result<T> {
 
     @Schema(description = "Indica el estado de la operacion", examples = {"true", "false"})
     public boolean correct;

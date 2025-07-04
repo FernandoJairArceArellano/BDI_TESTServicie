@@ -1,11 +1,11 @@
 package com.BDI_TESTServicie.JpaRepository;
 
-import com.BDI_TESTServicie.JPA.Usuario;
+import com.BDI_TESTServicie.JPA.Zona;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
+public interface ZonaRepository extends JpaRepository<Zona, Integer> {
 
-    Usuario findByNombre(String nombre);
+    Zona findByNombreZona(String nombreZona);
 }
