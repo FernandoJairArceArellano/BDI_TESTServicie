@@ -32,15 +32,12 @@ public class TransaccionService {
         Result result = new Result();
 
         try {
-            
-            Contrato contrato = new Contrato();
-            contrato = contratoRepository.findByCodigoContrato(codigoContrato);
+
+            Contrato contrato = contratoRepository.findByCodigoContrato(codigoContrato);
             transaccion.setContrato(contrato);
-            NodoEntrega nodoEntrega = new NodoEntrega();
-            nodoEntrega = nodoEntregaRepository.findByCodigoNodo(codigoNodoEntrega);
+            NodoEntrega nodoEntrega = nodoEntregaRepository.findByCodigoNodo(codigoNodoEntrega);
             transaccion.setNodoEntrega(nodoEntrega);
-            NodoRecepccion nodoRecepccion = new NodoRecepccion();
-            nodoRecepccion = nodoRecepccionRepository.findByCodigoNodo(codigoNodoRecepcion);
+            NodoRecepccion nodoRecepccion = nodoRecepccionRepository.findByCodigoNodo(codigoNodoRecepcion);
             transaccion.setNodoRecepcion(nodoRecepccion);
             transaccion.setCantidadAsignadaEntregada(BigDecimal.TEN);
             transaccion.setCantidadAsignadaRecepcion(BigDecimal.TEN);

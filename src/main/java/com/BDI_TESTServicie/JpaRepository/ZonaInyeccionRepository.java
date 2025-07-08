@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ZonaInyeccionRepository extends JpaRepository<ZonaInyeccion, Integer>{
-    
+public interface ZonaInyeccionRepository extends JpaRepository<ZonaInyeccion, Integer> {
+
+    ZonaInyeccion findByNombreZona(String nombreZona);
 }

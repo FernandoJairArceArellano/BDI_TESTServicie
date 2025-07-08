@@ -1,17 +1,22 @@
 package com.BDI_TESTServicie;
 
+import com.BDI_TESTServicie.JPA.Contrato;
 import com.BDI_TESTServicie.JPA.NodoEntrega;
 import com.BDI_TESTServicie.JPA.NodoRecepccion;
 import com.BDI_TESTServicie.JPA.Result;
+import com.BDI_TESTServicie.JPA.Transaccion;
 import com.BDI_TESTServicie.JPA.Usuario;
 import com.BDI_TESTServicie.JPA.ZonaExtraccion;
 import com.BDI_TESTServicie.JPA.ZonaInyeccion;
+import com.BDI_TESTServicie.JpaRepository.ContratoRepository;
 import com.BDI_TESTServicie.JpaRepository.NodoEntregaRepository;
 import com.BDI_TESTServicie.JpaRepository.NodoRecepccionRepository;
+import com.BDI_TESTServicie.JpaRepository.TransaccionRepository;
 import com.BDI_TESTServicie.JpaRepository.UsuarioRepository;
 import com.BDI_TESTServicie.JpaRepository.ZonaExtraccionRepository;
 import com.BDI_TESTServicie.JpaRepository.ZonaInyeccionRepository;
 import com.BDI_TESTServicie.Service.NodoService;
+import com.BDI_TESTServicie.Service.TransaccionService;
 import com.BDI_TESTServicie.Service.UsuarioService;
 import com.BDI_TESTServicie.Service.ZonaService;
 import org.junit.jupiter.api.Assertions;
@@ -44,6 +49,12 @@ public class MockitoTest {
     @Mock
     private ZonaInyeccionRepository zonaInyeccionRepository;
 
+    @Mock
+    private ContratoRepository contratoRepository;
+
+    @Mock
+    private TransaccionRepository transaccionRepository;
+
     @InjectMocks
     private UsuarioService usuarioService;
 
@@ -52,6 +63,9 @@ public class MockitoTest {
 
     @InjectMocks
     private ZonaService zonaService;
+
+    @InjectMocks
+    private TransaccionService transaccionService;
 
     @Test
     public void testAgregarUsuario() {
@@ -135,6 +149,46 @@ public class MockitoTest {
         Assertions.assertNull(result.ex);
         Mockito.verify(zonaExtraccionRepository, times(1)).save(any(ZonaExtraccion.class));
     }
-    
-    
+
+    @Test
+    public void testAddTransaccion_Exito() {
+        // Arrange
+        String codigoContrato = "C001";
+        String codigoNodoEntrega = "N037";
+        String codigoNodoRecepcion = "R011";
+
+        Contrato contratoMock = new Contrato();
+        contratoMock.setCodigoContrato(codigoContrato);
+
+        NodoEntrega nodoEntregaMock = new NodoEntrega();
+        nodoEntregaMock.setCodigoNodo(codigoNodoEntrega);
+
+        NodoRecepccion nodoRecepccionMock = new NodoRecepccion();
+        nodoRecepccionMock.setCodigoNodo(codigoNodoRecepcion);
+
+        Transaccion transaccion = new Transaccion();
+
+        // Simulaciones
+        Mockito.when(contratoRepository.findByCodigoContrato(codigoContrato)).thenReturn(contratoMock);
+        Mockito.when(nodoEntregaRepository.findByCodigoNodo(codigoNodoEntrega)).thenReturn(nodoEntregaMock);
+        Mockito.when(nodoRecepccionRepository.findByCodigoNodo(codigoNodoRecepcion)).thenReturn(nodoRecepccionMock);
+        Mockito.when(transaccionRepository.save(any(Transaccion.class))).thenReturn(transaccion);
+
+        // Act
+        Result<?> result = transaccionService.addTransaccion(
+                codigoContrato,
+                codigoNodoEntrega,
+                codigoNodoRecepcion,
+                transaccion
+        );
+
+        // Assert
+        Assertions.assertTrue(result.correct);
+        Assertions.assertNull(result.errorMessage);
+        Assertions.assertNull(result.ex);
+        Mockito.verify(contratoRepository).findByCodigoContrato(codigoContrato);
+        Mockito.verify(nodoEntregaRepository).findByCodigoNodo(codigoNodoEntrega);
+        Mockito.verify(nodoRecepccionRepository).findByCodigoNodo(codigoNodoRecepcion);
+        Mockito.verify(transaccionRepository).save(any(Transaccion.class));
+    }
 }
