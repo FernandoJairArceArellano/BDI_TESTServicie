@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import java.util.Date;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "UGTP_TBL_Transaccion")
@@ -21,23 +21,31 @@ public class Transaccion {
     @OneToOne
     private Contrato contrato;
 
-    @JoinColumn(name = "idDetalleNodoComercial")
     @OneToOne
-    private DetalleNodoComercial detalleNodoComercial;
+    private NodoRecepccion nodoRecepcion;
 
-    @JoinColumn(name = "idDetalleZona")
     @OneToOne
-    private DetalleZona detalleZona;
+    private NodoEntrega nodoEntrega;
 
-    @JoinColumn(name = "idDetalleCantidad")
-    @OneToOne
-    private DetalleCantidad detalleCantidad;
+    private BigDecimal cantidadAsignadaEntregada;
 
-    @JoinColumn(name = "idDetalleTarifa")
-    @OneToOne
-    private DetalleTarifa detalleTarifa;
+    private BigDecimal cantidadAsignadaRecepcion;
 
-    private Date fecha;
+    private BigDecimal cantidadNominalEntregada;
+
+    private BigDecimal cantidadNominalRecepcion;
+
+    private BigDecimal gasEnExceso;
+
+    private BigDecimal cargoUso;
+
+    private BigDecimal cargoGasEnExceso;
+
+    private BigDecimal tarifaExceso;
+
+    private BigDecimal tarifaUsoIterrumpible;
+
+    private BigDecimal totalAFacturar;
 
     public int getIdOperacion() {
         return idOperacion;
@@ -55,44 +63,100 @@ public class Transaccion {
         this.contrato = contrato;
     }
 
-    public DetalleNodoComercial getDetalleNodoComercial() {
-        return detalleNodoComercial;
+    public NodoRecepccion getNodoRecepcion() {
+        return nodoRecepcion;
     }
 
-    public void setDetalleNodoComercial(DetalleNodoComercial detalleNodoComercial) {
-        this.detalleNodoComercial = detalleNodoComercial;
+    public void setNodoRecepcion(NodoRecepccion nodoRecepcion) {
+        this.nodoRecepcion = nodoRecepcion;
     }
 
-    public DetalleZona getDetalleZona() {
-        return detalleZona;
+    public NodoEntrega getNodoEntrega() {
+        return nodoEntrega;
     }
 
-    public void setDetalleZona(DetalleZona detalleZona) {
-        this.detalleZona = detalleZona;
+    public void setNodoEntrega(NodoEntrega nodoEntrega) {
+        this.nodoEntrega = nodoEntrega;
     }
 
-    public DetalleCantidad getDetalleCantidad() {
-        return detalleCantidad;
+    public BigDecimal getCantidadAsignadaEntregada() {
+        return cantidadAsignadaEntregada;
     }
 
-    public void setDetalleCantidad(DetalleCantidad detalleCantidad) {
-        this.detalleCantidad = detalleCantidad;
+    public void setCantidadAsignadaEntregada(BigDecimal cantidadAsignadaEntregada) {
+        this.cantidadAsignadaEntregada = cantidadAsignadaEntregada;
     }
 
-    public DetalleTarifa getDetalleTarifa() {
-        return detalleTarifa;
+    public BigDecimal getCantidadAsignadaRecepcion() {
+        return cantidadAsignadaRecepcion;
     }
 
-    public void setDetalleTarifa(DetalleTarifa detalleTarifa) {
-        this.detalleTarifa = detalleTarifa;
+    public void setCantidadAsignadaRecepcion(BigDecimal cantidadAsignadaRecepcion) {
+        this.cantidadAsignadaRecepcion = cantidadAsignadaRecepcion;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public BigDecimal getCantidadNominalEntregada() {
+        return cantidadNominalEntregada;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setCantidadNominalEntregada(BigDecimal cantidadNominalEntregada) {
+        this.cantidadNominalEntregada = cantidadNominalEntregada;
+    }
+
+    public BigDecimal getCantidadNominalRecepcion() {
+        return cantidadNominalRecepcion;
+    }
+
+    public void setCantidadNominalRecepcion(BigDecimal cantidadNominalRecepcion) {
+        this.cantidadNominalRecepcion = cantidadNominalRecepcion;
+    }
+
+    public BigDecimal getGasEnExceso() {
+        return gasEnExceso;
+    }
+
+    public void setGasEnExceso(BigDecimal gasEnExceso) {
+        this.gasEnExceso = gasEnExceso;
+    }
+
+    public BigDecimal getCargoUso() {
+        return cargoUso;
+    }
+
+    public void setCargoUso(BigDecimal cargoUso) {
+        this.cargoUso = cargoUso;
+    }
+
+    public BigDecimal getCargoGasEnExceso() {
+        return cargoGasEnExceso;
+    }
+
+    public void setCargoGasEnExceso(BigDecimal cargoGasEnExceso) {
+        this.cargoGasEnExceso = cargoGasEnExceso;
+    }
+
+    public BigDecimal getTarifaExceso() {
+        return tarifaExceso;
+    }
+
+    public void setTarifaExceso(BigDecimal tarifaExceso) {
+        this.tarifaExceso = tarifaExceso;
+    }
+
+    public BigDecimal getTarifaUsoIterrumpible() {
+        return tarifaUsoIterrumpible;
+    }
+
+    public void setTarifaUsoIterrumpible(BigDecimal tarifaUsoIterrumpible) {
+        this.tarifaUsoIterrumpible = tarifaUsoIterrumpible;
+    }
+
+    public BigDecimal getTotalAFacturar() {
+        return totalAFacturar;
+    }
+
+    public void setTotalAFacturar(BigDecimal totalAFacturar) {
+        this.totalAFacturar = totalAFacturar;
     }
 
 }

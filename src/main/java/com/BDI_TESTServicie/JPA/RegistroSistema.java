@@ -9,28 +9,6 @@ public class RegistroSistema {
 
     public Usuario usuario;
 
-    public DetalleZona detalleZona;
-
-    public Zona zona;
-
-    public TipoZona tipoZona;
-
-    public DetalleTarifa detalleTarifa;
-
-    public Tarifa tarifa;
-
-    public DetalleCantidad detalleCantidad;
-
-    public CantidadNominal cantidadNominal;
-
-    public CantidadAsignada cantidadAsignada;
-
-    public TipoNodoComercial tipoNodoComercial;
-
-    public NodoComercial nodoComercial;
-
-    public DetalleNodoComercial detalleNodoComercial;
-
     public Transaccion transaccion;
 
 }
