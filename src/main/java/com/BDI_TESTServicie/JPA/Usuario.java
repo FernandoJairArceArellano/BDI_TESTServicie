@@ -1,5 +1,6 @@
 package com.BDI_TESTServicie.JPA;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,8 +13,10 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IDUSUARIO")
     private int idUsuario;
 
+    @Column(name = "NOMBRE")
     private String nombre;
 
     public int getIdUsuario() {

@@ -17,6 +17,7 @@ public class Contrato {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IDCONTRATO")
     private int idContrato;
 
     @Column(name = "CODIGOCONTRATO")
@@ -24,15 +25,15 @@ public class Contrato {
 
     private Date fecha;
 
-    @JoinColumn(name = "zonaExtraccion")
+    @JoinColumn(name = "ZONAEXTRACCION")
     @OneToOne
     private ZonaExtraccion zonaExtraccion;
 
-    @JoinColumn(name = "zonaInyeccion")
+    @JoinColumn(name = "ZONAINYECCION")
     @OneToOne
     private ZonaInyeccion zonaInyeccion;
 
-    @JoinColumn(name = "idUsuario")
+    @JoinColumn(name = "IDUSUARIO")
     @ManyToOne
     private Usuario usuario;
 

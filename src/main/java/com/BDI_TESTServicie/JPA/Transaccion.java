@@ -1,10 +1,12 @@
 package com.BDI_TESTServicie.JPA;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
@@ -15,36 +17,49 @@ public class Transaccion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IDOPERACION")
     private int idOperacion;
 
-    @JoinColumn(name = "idContrato")
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "IDCONTRATO")
     private Contrato contrato;
 
     @OneToOne
+    @JoinColumn(name = "NODORECEPCION")
     private NodoRecepccion nodoRecepcion;
 
     @OneToOne
+    @JoinColumn(name = "NODOENTREGA")
     private NodoEntrega nodoEntrega;
 
+    @Column(name = "CANTIDADASIGNADAENTREGA")
     private BigDecimal cantidadAsignadaEntregada;
 
+    @Column(name = "CANTIDADASIGNADARECEPCION")
     private BigDecimal cantidadAsignadaRecepcion;
 
+    @Column(name = "CANTIDADNOMINALENTREGA")
     private BigDecimal cantidadNominalEntregada;
 
+    @Column(name = "CANTIDADNOMINALRECEPCION")
     private BigDecimal cantidadNominalRecepcion;
 
+    @Column(name = "GASENEXCESO")
     private BigDecimal gasEnExceso;
 
+    @Column(name = "CARGOUSO")
     private BigDecimal cargoUso;
 
+    @Column(name = "CARGOGASENEXCESO")
     private BigDecimal cargoGasEnExceso;
 
+    @Column(name = "TARIFAEXCESO")
     private BigDecimal tarifaExceso;
 
+    @Column(name = "TARIFAUSOITERRUMPIBLE")
     private BigDecimal tarifaUsoIterrumpible;
 
+    @Column(name = "TOTALAFACTURAR")
     private BigDecimal totalAFacturar;
 
     public int getIdOperacion() {

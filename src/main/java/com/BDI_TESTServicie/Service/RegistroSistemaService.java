@@ -85,6 +85,8 @@ public class RegistroSistemaService {
             if (contrato == null) {
                 contrato = registro.contrato;
                 contrato.setUsuario(usuario);
+                contrato.setCodigoContrato(registro.contrato.getCodigoContrato());
+                contrato.setFecha(registro.contrato.getFecha());
                 contrato.setZonaExtraccion(zonaExtraccion);
                 contrato.setZonaInyeccion(zonaInyeccion);
                 contrato = contratoRepository.save(contrato);
@@ -95,6 +97,17 @@ public class RegistroSistemaService {
             transaccion.setContrato(contrato);
             transaccion.setNodoEntrega(nodoEntrega);
             transaccion.setNodoRecepcion(nodoRecepccion);
+
+            transaccion.setCantidadAsignadaEntregada(registro.transaccion.getCantidadAsignadaEntregada());
+            transaccion.setCantidadAsignadaRecepcion(registro.transaccion.getCantidadAsignadaRecepcion());
+            transaccion.setCantidadNominalEntregada(registro.transaccion.getCantidadNominalEntregada());
+            transaccion.setCantidadNominalRecepcion(registro.transaccion.getCantidadNominalRecepcion());
+            transaccion.setGasEnExceso(registro.transaccion.getGasEnExceso());
+            transaccion.setCargoUso(registro.transaccion.getCargoUso());
+            transaccion.setCargoGasEnExceso(registro.transaccion.getCargoGasEnExceso());
+            transaccion.setTarifaExceso(registro.transaccion.getTarifaExceso());
+            transaccion.setTarifaUsoIterrumpible(registro.transaccion.getTarifaUsoIterrumpible());
+            transaccion.setTotalAFacturar(registro.transaccion.getTotalAFacturar());
             transaccionRepository.save(transaccion);
 
             result.correct = true;
@@ -113,9 +126,9 @@ public class RegistroSistemaService {
 
         int fila = 1;
         for (RegistroSistema registro : registros) {
-            Result r = procesarRegistroSistema(registro);
-            if (!r.correct) {
-                errores.add(new ResultFile(fila, "", r.errorMessage));
+            Result resultProcesarRegistroSistema = procesarRegistroSistema(registro);
+            if (!resultProcesarRegistroSistema.correct) {
+                errores.add(new ResultFile(fila, "", resultProcesarRegistroSistema.errorMessage));
             }
             fila++;
         }

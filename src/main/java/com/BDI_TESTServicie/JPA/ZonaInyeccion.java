@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "UGTP_TBL_ZONAINYECCION")
+@Table(name = "UGPT_TBL_ZONA_INYECCION")
 @Schema(description = "Entidad que representa la Zona de inyeccion", examples = {"Zona 8", "Zona 1"})
 public class ZonaInyeccion {
 
@@ -19,6 +19,7 @@ public class ZonaInyeccion {
     @Column(name = "IDZONAINYECCION")
     private int idZonaInyeccion;
 
+    @Column(name = "NOMBREZONA")
     private String nombreZona;
 
     public int getIdZonaInyeccion() {
