@@ -5,6 +5,7 @@ import com.BDI_TESTServicie.JPA.NodoRecepccion;
 import com.BDI_TESTServicie.JPA.Result;
 import com.BDI_TESTServicie.JpaRepository.NodoEntregaRepository;
 import com.BDI_TESTServicie.JpaRepository.NodoRecepccionRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,4 +50,11 @@ public class NodoService {
         return result;
     }
 
+    public List<NodoEntrega> getAllEntrega() {
+        return nodoEntregaRepository.findAll();
+    }
+
+    public List<NodoRecepccion> getAllRecepccion() {
+        return nodoRecepccionRepository.findAll();
+    }
 }

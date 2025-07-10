@@ -100,13 +100,13 @@ public class RegistroSistemaService {
 
             transaccion.setCantidadAsignadaEntregada(registro.transaccion.getCantidadAsignadaEntregada());
             transaccion.setCantidadAsignadaRecepcion(registro.transaccion.getCantidadAsignadaRecepcion());
-            transaccion.setCantidadNominalEntregada(registro.transaccion.getCantidadNominalEntregada());
-            transaccion.setCantidadNominalRecepcion(registro.transaccion.getCantidadNominalRecepcion());
+            transaccion.setCantidadNominadaEntregada(registro.transaccion.getCantidadNominadaEntregada());
+            transaccion.setCantidadNominadaRecepcion(registro.transaccion.getCantidadNominadaRecepcion());
             transaccion.setGasEnExceso(registro.transaccion.getGasEnExceso());
             transaccion.setCargoUso(registro.transaccion.getCargoUso());
             transaccion.setCargoGasEnExceso(registro.transaccion.getCargoGasEnExceso());
-            transaccion.setTarifaExceso(registro.transaccion.getTarifaExceso());
-            transaccion.setTarifaUsoIterrumpible(registro.transaccion.getTarifaUsoIterrumpible());
+            transaccion.setTarifaExcesoFirme(registro.transaccion.getTarifaExcesoFirme());
+            transaccion.setTarifaUsoInterrumpible(registro.transaccion.getTarifaUsoInterrumpible());
             transaccion.setTotalAFacturar(registro.transaccion.getTotalAFacturar());
             transaccionRepository.save(transaccion);
 

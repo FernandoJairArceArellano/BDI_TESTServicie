@@ -10,6 +10,7 @@ import com.BDI_TESTServicie.JpaRepository.UsuarioRepository;
 import com.BDI_TESTServicie.JpaRepository.ZonaExtraccionRepository;
 import com.BDI_TESTServicie.JpaRepository.ZonaInyeccionRepository;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,4 +55,15 @@ public class ContratoService {
         return result;
     }
 
+    public List<Contrato> getAllContratos() {
+        return contratoRepository.findAll();
+    }
+
+    public List<Contrato> obtenerContratosPorIdUsuario(int idUsuario) {
+        return contratoRepository.findByUsuario_IdUsuario(idUsuario);
+    }
+
+    public List<Contrato> obtenerContratosPorUsuario(Usuario usuario) {
+        return contratoRepository.findByUsuario(usuario);
+    }
 }

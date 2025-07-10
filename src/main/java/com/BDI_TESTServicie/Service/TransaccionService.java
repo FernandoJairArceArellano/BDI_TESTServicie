@@ -10,6 +10,7 @@ import com.BDI_TESTServicie.JpaRepository.NodoEntregaRepository;
 import com.BDI_TESTServicie.JpaRepository.NodoRecepccionRepository;
 import com.BDI_TESTServicie.JpaRepository.TransaccionRepository;
 import java.math.BigDecimal;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,13 +42,13 @@ public class TransaccionService {
             transaccion.setNodoRecepcion(nodoRecepccion);
             transaccion.setCantidadAsignadaEntregada(BigDecimal.TEN);
             transaccion.setCantidadAsignadaRecepcion(BigDecimal.TEN);
-            transaccion.setCantidadNominalEntregada(BigDecimal.TEN);
-            transaccion.setCantidadNominalRecepcion(BigDecimal.TEN);
+            transaccion.setCantidadNominadaEntregada(BigDecimal.TEN);
+            transaccion.setCantidadNominadaRecepcion(BigDecimal.TEN);
             transaccion.setGasEnExceso(BigDecimal.TEN);
             transaccion.setCargoUso(BigDecimal.TEN);
             transaccion.setCargoGasEnExceso(BigDecimal.TEN);
-            transaccion.setTarifaExceso(BigDecimal.TEN);
-            transaccion.setTarifaUsoIterrumpible(BigDecimal.TEN);
+            transaccion.setTarifaExcesoFirme(BigDecimal.TEN);
+            transaccion.setTarifaUsoInterrumpible(BigDecimal.TEN);
             transaccion.setTotalAFacturar(BigDecimal.TEN);
             transaccionRepository.save(transaccion);
             result.correct = true;
@@ -58,5 +59,9 @@ public class TransaccionService {
             result.ex = ex;
         }
         return result;
+    }
+    
+    public List<Transaccion> getAllTransaccion(){
+        return transaccionRepository.findAll();
     }
 }

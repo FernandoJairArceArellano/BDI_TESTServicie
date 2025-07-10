@@ -11,11 +11,8 @@ import com.BDI_TESTServicie.JPA.Usuario;
 import com.BDI_TESTServicie.JPA.ZonaExtraccion;
 import com.BDI_TESTServicie.JPA.ZonaInyeccion;
 import com.BDI_TESTServicie.Service.RegistroSistemaService;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -27,6 +24,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -130,13 +128,13 @@ public class RegistroRestController {
                     registroSistema.zonaExtraccion.setNombreZona(row.getCell(8).toString());
 
                     registroSistema.transaccion = new Transaccion();
-                    registroSistema.transaccion.setCantidadNominalRecepcion(new BigDecimal(row.getCell(9).getNumericCellValue()));
+                    registroSistema.transaccion.setCantidadNominadaRecepcion(new BigDecimal(row.getCell(9).getNumericCellValue()));
                     registroSistema.transaccion.setCantidadAsignadaRecepcion(new BigDecimal(row.getCell(10).getNumericCellValue()));
-                    registroSistema.transaccion.setCantidadNominalEntregada(new BigDecimal(row.getCell(11).getNumericCellValue()));
+                    registroSistema.transaccion.setCantidadNominadaEntregada(new BigDecimal(row.getCell(11).getNumericCellValue()));
                     registroSistema.transaccion.setCantidadAsignadaEntregada(new BigDecimal(row.getCell(12).getNumericCellValue()));
                     registroSistema.transaccion.setGasEnExceso(new BigDecimal(row.getCell(13).getNumericCellValue()));
-                    registroSistema.transaccion.setTarifaExceso(new BigDecimal(row.getCell(14).getNumericCellValue()));
-                    registroSistema.transaccion.setTarifaUsoIterrumpible(new BigDecimal(row.getCell(15).getNumericCellValue()));
+                    registroSistema.transaccion.setTarifaExcesoFirme(new BigDecimal(row.getCell(14).getNumericCellValue()));
+                    registroSistema.transaccion.setTarifaUsoInterrumpible(new BigDecimal(row.getCell(15).getNumericCellValue()));
                     registroSistema.transaccion.setCargoUso(new BigDecimal(row.getCell(16).getNumericCellValue()));    // la propiedade en JPA esta en Bigdecimal y  la celda esta en Number
                     registroSistema.transaccion.setCargoGasEnExceso(new BigDecimal(row.getCell(17).getNumericCellValue()));    // la propiedade en JPA esta en Bigdecimal y  la celda esta en Number
                     registroSistema.transaccion.setTotalAFacturar(new BigDecimal(row.getCell(18).getNumericCellValue()));    // la propiedade en JPA esta en Bigdecimal y  la celda esta en Number
@@ -206,7 +204,7 @@ public class RegistroRestController {
                 if (registro.transaccion == null) {
                     listaErrores.add(new ResultFile(fila, "Transaccion", "Los datos de transacción son obligatorios"));
                 } else {
-                    if (registro.transaccion.getCantidadNominalRecepcion() == null) {
+                    if (registro.transaccion.getCantidadNominadaRecepcion() == null) {
                         listaErrores.add(new ResultFile(fila, "CantidadNominalRecepcion", "Debe especificar la cantidad nominal de recepción"));
                     }
 
@@ -214,7 +212,7 @@ public class RegistroRestController {
                         listaErrores.add(new ResultFile(fila, "CantidadAsignadaRecepcion", "Debe especificar la cantidad asignada de recepción"));
                     }
 
-                    if (registro.transaccion.getCantidadNominalEntregada() == null) {
+                    if (registro.transaccion.getCantidadNominadaEntregada() == null) {
                         listaErrores.add(new ResultFile(fila, "CantidadNominalEntregada", "Debe especificar la cantidad nominal de entrega"));
                     }
 
@@ -226,11 +224,11 @@ public class RegistroRestController {
                         listaErrores.add(new ResultFile(fila, "GasEnExceso", "Debe especificar el gas en exceso"));
                     }
 
-                    if (registro.transaccion.getTarifaExceso() == null) {
+                    if (registro.transaccion.getTarifaExcesoFirme() == null) {
                         listaErrores.add(new ResultFile(fila, "TarifaExcesoFirme", "Debe especificar la tarifa de exceso firme"));
                     }
 
-                    if (registro.transaccion.getTarifaUsoIterrumpible() == null) {
+                    if (registro.transaccion.getTarifaUsoInterrumpible() == null) {
                         listaErrores.add(new ResultFile(fila, "TarifaUsoIterrumpible", "Debe especificar la tarifa de uso interrumpible"));
                     }
 
@@ -306,5 +304,18 @@ public class RegistroRestController {
         }
 
         return ResponseEntity.ok(result);
+    }
+
+    @GetMapping
+    public Result getAllRegistros() {
+        Result result = new Result();
+        try {
+
+        } catch (Exception ex) {
+            result.correct = false;
+            result.errorMessage = ex.getLocalizedMessage();
+            result.ex = ex;
+        }
+        return result;
     }
 }

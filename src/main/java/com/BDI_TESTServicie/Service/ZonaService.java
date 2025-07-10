@@ -5,6 +5,7 @@ import com.BDI_TESTServicie.JPA.ZonaExtraccion;
 import com.BDI_TESTServicie.JPA.ZonaInyeccion;
 import com.BDI_TESTServicie.JpaRepository.ZonaExtraccionRepository;
 import com.BDI_TESTServicie.JpaRepository.ZonaInyeccionRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,13 @@ public class ZonaService {
             result.ex = ex;
         }
         return result;
+    }
+
+    public List<ZonaExtraccion> getAllZonasExtraccion() {
+        return zonaExtraccionRepository.findAll();
+    }
+
+    public List<ZonaInyeccion> getAllZonasInyeccion() {
+        return zonaInyeccionRepository.findAll();
     }
 }

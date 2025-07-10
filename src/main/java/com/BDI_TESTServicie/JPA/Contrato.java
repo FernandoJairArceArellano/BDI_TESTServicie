@@ -1,5 +1,6 @@
 package com.BDI_TESTServicie.JPA;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +36,7 @@ public class Contrato {
 
     @JoinColumn(name = "IDUSUARIO")
     @ManyToOne
+//    @JsonBackReference
     private Usuario usuario;
 
     public int getIdContrato() {

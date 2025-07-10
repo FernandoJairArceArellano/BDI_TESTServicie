@@ -295,13 +295,13 @@ public class MockitoTest {
         transaccion.setNodoEntrega(nodoEntrega);
         transaccion.setCantidadAsignadaEntregada(BigDecimal.TEN);
         transaccion.setCantidadAsignadaRecepcion(BigDecimal.TEN);
-        transaccion.setCantidadNominalEntregada(BigDecimal.TEN);
-        transaccion.setCantidadNominalRecepcion(BigDecimal.TEN);
+        transaccion.setCantidadNominadaEntregada(BigDecimal.TEN);
+        transaccion.setCantidadNominadaRecepcion(BigDecimal.TEN);
         transaccion.setGasEnExceso(BigDecimal.TEN);
         transaccion.setCargoUso(BigDecimal.TEN);
         transaccion.setCargoGasEnExceso(BigDecimal.TEN);
-        transaccion.setTarifaExceso(BigDecimal.TEN);
-        transaccion.setTarifaUsoIterrumpible(BigDecimal.TEN);
+        transaccion.setTarifaExcesoFirme(BigDecimal.TEN);
+        transaccion.setTarifaUsoInterrumpible(BigDecimal.TEN);
         transaccion.setTotalAFacturar(BigDecimal.TEN);
 
         registro.transaccion = transaccion;

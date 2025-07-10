@@ -38,11 +38,11 @@ public class Transaccion {
     @Column(name = "CANTIDADASIGNADARECEPCION")
     private BigDecimal cantidadAsignadaRecepcion;
 
-    @Column(name = "CANTIDADNOMINALENTREGA")
-    private BigDecimal cantidadNominalEntregada;
+    @Column(name = "CANTIDADNOMINADAENTREGA")
+    private BigDecimal cantidadNominadaEntregada;
 
-    @Column(name = "CANTIDADNOMINALRECEPCION")
-    private BigDecimal cantidadNominalRecepcion;
+    @Column(name = "CANTIDADNOMINADARECEPCION")
+    private BigDecimal cantidadNominadaRecepcion;
 
     @Column(name = "GASENEXCESO")
     private BigDecimal gasEnExceso;
@@ -53,11 +53,11 @@ public class Transaccion {
     @Column(name = "CARGOGASENEXCESO")
     private BigDecimal cargoGasEnExceso;
 
-    @Column(name = "TARIFAEXCESO")
-    private BigDecimal tarifaExceso;
+    @Column(name = "TARIFAEXCESOFIRME")
+    private BigDecimal tarifaExcesoFirme;
 
-    @Column(name = "TARIFAUSOITERRUMPIBLE")
-    private BigDecimal tarifaUsoIterrumpible;
+    @Column(name = "TARIFAUSOINTERRUMPIBLE")
+    private BigDecimal tarifaUsoInterrumpible;
 
     @Column(name = "TOTALAFACTURAR")
     private BigDecimal totalAFacturar;
@@ -110,20 +110,20 @@ public class Transaccion {
         this.cantidadAsignadaRecepcion = cantidadAsignadaRecepcion;
     }
 
-    public BigDecimal getCantidadNominalEntregada() {
-        return cantidadNominalEntregada;
+    public BigDecimal getCantidadNominadaEntregada() {
+        return cantidadNominadaEntregada;
     }
 
-    public void setCantidadNominalEntregada(BigDecimal cantidadNominalEntregada) {
-        this.cantidadNominalEntregada = cantidadNominalEntregada;
+    public void setCantidadNominadaEntregada(BigDecimal cantidadNominadaEntregada) {
+        this.cantidadNominadaEntregada = cantidadNominadaEntregada;
     }
 
-    public BigDecimal getCantidadNominalRecepcion() {
-        return cantidadNominalRecepcion;
+    public BigDecimal getCantidadNominadaRecepcion() {
+        return cantidadNominadaRecepcion;
     }
 
-    public void setCantidadNominalRecepcion(BigDecimal cantidadNominalRecepcion) {
-        this.cantidadNominalRecepcion = cantidadNominalRecepcion;
+    public void setCantidadNominadaRecepcion(BigDecimal cantidadNominadaRecepcion) {
+        this.cantidadNominadaRecepcion = cantidadNominadaRecepcion;
     }
 
     public BigDecimal getGasEnExceso() {
@@ -150,20 +150,20 @@ public class Transaccion {
         this.cargoGasEnExceso = cargoGasEnExceso;
     }
 
-    public BigDecimal getTarifaExceso() {
-        return tarifaExceso;
+    public BigDecimal getTarifaExcesoFirme() {
+        return tarifaExcesoFirme;
     }
 
-    public void setTarifaExceso(BigDecimal tarifaExceso) {
-        this.tarifaExceso = tarifaExceso;
+    public void setTarifaExcesoFirme(BigDecimal tarifaExcesoFirme) {
+        this.tarifaExcesoFirme = tarifaExcesoFirme;
     }
 
-    public BigDecimal getTarifaUsoIterrumpible() {
-        return tarifaUsoIterrumpible;
+    public BigDecimal getTarifaUsoInterrumpible() {
+        return tarifaUsoInterrumpible;
     }
 
-    public void setTarifaUsoIterrumpible(BigDecimal tarifaUsoIterrumpible) {
-        this.tarifaUsoIterrumpible = tarifaUsoIterrumpible;
+    public void setTarifaUsoInterrumpible(BigDecimal tarifaUsoInterrumpible) {
+        this.tarifaUsoInterrumpible = tarifaUsoInterrumpible;
     }
 
     public BigDecimal getTotalAFacturar() {
