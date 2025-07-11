@@ -59,6 +59,25 @@ public class ContratoService {
         return contratoRepository.findAll();
     }
 
+    public Result<Contrato> obtenerContratoPorCodigo(String codigoContrato) {
+        Result<Contrato> result = new Result<>();
+        try {
+            Contrato contrato = contratoRepository.findByCodigoContrato(codigoContrato);
+            if (contrato != null) {
+                result.correct = true;
+                result.object = contrato;
+            } else {
+                result.correct = false;
+                result.errorMessage = "Contrato no encontrado con código: " + codigoContrato;
+            }
+        } catch (Exception ex) {
+            result.correct = false;
+            result.errorMessage = ex.getMessage();
+            result.ex = ex;
+        }
+        return result;
+    }
+
     public List<Contrato> obtenerContratosPorIdUsuario(int idUsuario) {
         return contratoRepository.findByUsuario_IdUsuario(idUsuario);
     }

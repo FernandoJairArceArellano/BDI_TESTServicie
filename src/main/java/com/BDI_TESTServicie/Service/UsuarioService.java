@@ -37,6 +37,25 @@ public class UsuarioService {
     public Usuario getByNombre(String nombre) {
         return usuarioRepository.findByNombre(nombre);
     }
+    
+    public Result<Usuario> obtenerUsuarioPorNombre(String nombre){
+        Result<Usuario> result =  new Result<>();
+        try {
+            Usuario usuario = usuarioRepository.findByNombre(nombre);
+            if (usuario != null) {
+                result.correct = true;
+                result.object = usuario;
+            } else {
+                result.correct = false;
+                result.errorMessage = "Usuario no encontrado con el nombre de: " + nombre;
+            }
+        } catch (Exception ex) {
+            result.correct = false;
+            result.errorMessage = ex.getLocalizedMessage();
+            result.ex = ex;
+        }
+        return result;
+    }
 
     public Result actualizarUsuario(Usuario usuario) {
         Result result = new Result();
