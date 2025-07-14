@@ -9,12 +9,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/contratos/v1")
+@CrossOrigin(origins = "http://localhost:8080")
 public class ContratoRestController {
 
     @Autowired
@@ -40,8 +43,18 @@ public class ContratoRestController {
         return result;
     }
 
+    @PostMapping("/add")
+    public Result addContrato(@RequestBody Contrato contrato) {
+        return contratoService.agregarContrato(
+                contrato.getCodigoContrato(),
+                contrato.getFecha(),
+                contrato.getZonaExtraccion(),
+                contrato.getZonaInyeccion(),
+                contrato.getUsuario()
+        );
+    }
+
     @GetMapping("/por-usuario-id")
-    @CrossOrigin(origins = "http://localhost:8080")
     public Result getContratosPorUsuarioId(@RequestParam int id) {
         Result result = new Result();
         try {
@@ -57,7 +70,6 @@ public class ContratoRestController {
     }
 
     @GetMapping("/por-usuario-nombre")
-    @CrossOrigin(origins = "http://localhost:8080")
     public Result getContratosPorNombreUsuario(@RequestParam String nombre) {
         Result result = new Result();
         try {
@@ -82,4 +94,5 @@ public class ContratoRestController {
     public Result getContrato(@RequestParam String codigoContrato) {
         return contratoService.obtenerContratoPorCodigo(codigoContrato);
     }
+
 }
