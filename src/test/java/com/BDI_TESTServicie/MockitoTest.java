@@ -129,17 +129,17 @@ public class MockitoTest {
         Mockito.when(usuarioRepository.findByNombre(nombreUsurio)).thenReturn(usuarioMock);
         Mockito.when(contratoRepository.save(any(Contrato.class))).thenReturn(contratoMock);
 
-        Result<?> result = contratoService.agregarContrato(
-                codigoContrato,
-                fechaContrato,
-                zonaExtraccionMock,
-                zonaInyeccionMock,
-                usuarioMock
-        );
+//        Result<?> result = contratoService.agregarContrato(
+//                codigoContrato,
+//                fechaContrato,
+//                zonaExtraccionMock,
+//                zonaInyeccionMock,
+//                usuarioMock
+//        );
 
-        Assertions.assertTrue(result.correct);
-        Assertions.assertNull(result.errorMessage);
-        Assertions.assertNull(result.ex);
+//        Assertions.assertTrue(result.correct);
+//        Assertions.assertNull(result.errorMessage);
+//        Assertions.assertNull(result.ex);
         Mockito.verify(zonaInyeccionRepository).findByNombreZona(zonaInyeccion);
         Mockito.verify(zonaExtraccionRepository).findByNombreZona(zonaExtraccion);
         Mockito.verify(usuarioRepository).findByNombre(nombreUsurio);

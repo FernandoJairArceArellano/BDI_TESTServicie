@@ -11,6 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "UGTP_TBL_Contrato")
@@ -24,6 +25,7 @@ public class Contrato {
     @Column(name = "CODIGOCONTRATO")
     private String codigoContrato;
 
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date fecha;
 
     @JoinColumn(name = "ZONAEXTRACCION")

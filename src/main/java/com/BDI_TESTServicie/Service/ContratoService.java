@@ -9,10 +9,12 @@ import com.BDI_TESTServicie.JpaRepository.ContratoRepository;
 import com.BDI_TESTServicie.JpaRepository.UsuarioRepository;
 import com.BDI_TESTServicie.JpaRepository.ZonaExtraccionRepository;
 import com.BDI_TESTServicie.JpaRepository.ZonaInyeccionRepository;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class ContratoService {
@@ -29,16 +31,18 @@ public class ContratoService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Result<?> agregarContrato(String codigoContrato, Date fecha, ZonaExtraccion zonaExtraccion, ZonaInyeccion zonaInyeccion, Usuario usuario) {
+    public Result agregarContrato(Contrato contrato) {
         Result result = new Result();
         try {
-            Contrato contrato = new Contrato();
-            contrato.setCodigoContrato(codigoContrato);
-            contrato.setFecha(fecha);
+            ZonaExtraccion zonaExtraccionBD = zonaExtraccionRepository.findByNombreZona(
+                    contrato.getZonaExtraccion().getNombreZona()
+            );
 
-            ZonaExtraccion zonaExtraccionBD = zonaExtraccionRepository.findByNombreZona(zonaExtraccion.getNombreZona());
-            ZonaInyeccion zonaInyeccionBD = zonaInyeccionRepository.findByNombreZona(zonaInyeccion.getNombreZona());
-            Usuario usuarioBD = usuarioRepository.findByNombre(usuario.getNombre());
+            ZonaInyeccion zonaInyeccionBD = zonaInyeccionRepository.findByNombreZona(
+                    contrato.getZonaInyeccion().getNombreZona()
+            );
+
+            Usuario usuarioBD = usuarioRepository.findById(contrato.getUsuario().getIdUsuario()).orElse(null);
 
             contrato.setZonaExtraccion(zonaExtraccionBD);
             contrato.setZonaInyeccion(zonaInyeccionBD);
@@ -46,10 +50,27 @@ public class ContratoService {
 
             contratoRepository.save(contrato);
             result.correct = true;
-            return result;
         } catch (Exception ex) {
             result.correct = false;
-            result.errorMessage = ex.getLocalizedMessage();
+            result.errorMessage = ex.getMessage();
+            result.ex = ex;
+        }
+        return result;
+    }
+
+    public Result eliminarContrato(int idContrato) {
+        Result result = new Result();
+        try {
+            if (contratoRepository.existsById(idContrato)) {
+                contratoRepository.deleteById(idContrato);
+                result.correct = true;
+            } else {
+                result.correct = false;
+                result.errorMessage = "Contrato no encontrado con ID: " + idContrato;
+            }
+        } catch (Exception ex) {
+            result.correct = false;
+            result.errorMessage = ex.getMessage();
             result.ex = ex;
         }
         return result;

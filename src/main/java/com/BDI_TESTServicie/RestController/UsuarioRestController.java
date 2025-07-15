@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/usuario/v1")
+@CrossOrigin(origins = "http://localhost:8080")
 public class UsuarioRestController {
 
     @Autowired
@@ -35,7 +38,6 @@ public class UsuarioRestController {
         return result;
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
     @PutMapping("/updateUsuario")
     public Result actualizarUsuario(@RequestBody Usuario usuario) {
         return usuarioService.actualizarUsuario(usuario);
@@ -45,4 +47,10 @@ public class UsuarioRestController {
     public Result getUsuario(@RequestParam String nombre) {
         return usuarioService.obtenerUsuarioPorNombre(nombre);
     }
+
+    @PostMapping("/addUsuario")
+    public Result agregarUsuario(@RequestBody String nombre){
+        return usuarioService.agregarUsuario(nombre);
+    }
+
 }
