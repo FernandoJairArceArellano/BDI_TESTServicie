@@ -1,7 +1,10 @@
 package com.BDI_TESTServicie.Service;
 
+import com.BDI_TESTServicie.JPA.Contrato;
 import com.BDI_TESTServicie.JPA.Result;
 import com.BDI_TESTServicie.JPA.Usuario;
+import com.BDI_TESTServicie.JpaRepository.ContratoRepository;
+import com.BDI_TESTServicie.JpaRepository.TransaccionRepository;
 import com.BDI_TESTServicie.JpaRepository.UsuarioRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +16,19 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Result agregarUsuario(String nombre) {
+    @Autowired
+    private ContratoRepository contratoRepository;
+
+    @Autowired
+    private TransaccionRepository transaccionRepository;
+
+    public Result agregarUsuario(Usuario usuario) {
         Result result = new Result();
 
         try {
-            Usuario usuario = new Usuario();
-            usuario.setNombre(nombre);
             usuarioRepository.save(usuario);
             result.correct = true;
-            return result;
+            result.object = usuario;
         } catch (Exception ex) {
             result.correct = false;
             result.errorMessage = ex.getLocalizedMessage();
@@ -37,9 +44,9 @@ public class UsuarioService {
     public Usuario getByNombre(String nombre) {
         return usuarioRepository.findByNombre(nombre);
     }
-    
-    public Result<Usuario> obtenerUsuarioPorNombre(String nombre){
-        Result<Usuario> result =  new Result<>();
+
+    public Result<Usuario> obtenerUsuarioPorNombre(String nombre) {
+        Result<Usuario> result = new Result<>();
         try {
             Usuario usuario = usuarioRepository.findByNombre(nombre);
             if (usuario != null) {
@@ -69,6 +76,34 @@ public class UsuarioService {
             } else {
                 result.correct = false;
                 result.errorMessage = "Usuario no encontrado";
+            }
+        } catch (Exception ex) {
+            result.correct = false;
+            result.errorMessage = ex.getLocalizedMessage();
+            result.ex = ex;
+        }
+        return result;
+    }
+
+    public Result borrarUsuario(int idUsuario) {
+        Result result = new Result();
+        try {
+            if (usuarioRepository.existsById(idUsuario)) {
+                //System.out.println("Usuario encontrado con el ID:" + idUsuario);
+                List<Contrato> contratos = contratoRepository.findByUsuario_IdUsuario(idUsuario);
+
+                for (Contrato contrato : contratos) {
+                    //System.out.println("Borrando: " + contrato);
+                    transaccionRepository.deleteByContrato_IdContrato(contrato.getIdContrato());
+
+                    contratoRepository.deleteById(contrato.getIdContrato());
+                }
+                //System.out.println("Usuario borrado con el ID:" + idUsuario);
+                usuarioRepository.deleteById(idUsuario);
+                result.correct = true;
+            } else {
+                result.correct = false;
+                result.errorMessage = "Usuario no encontrado con ID: " + idUsuario;
             }
         } catch (Exception ex) {
             result.correct = false;

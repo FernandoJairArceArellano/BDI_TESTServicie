@@ -6,6 +6,7 @@ import com.BDI_TESTServicie.Service.UsuarioService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,8 +50,12 @@ public class UsuarioRestController {
     }
 
     @PostMapping("/addUsuario")
-    public Result agregarUsuario(@RequestBody String nombre){
-        return usuarioService.agregarUsuario(nombre);
+    public Result agregarUsuario(@RequestBody Usuario usuario){
+        return usuarioService.agregarUsuario(usuario);
     }
-
+    
+    @DeleteMapping("/delete/{idUsuario}")
+    public Result deleteUsuario(@PathVariable int idUsuario){
+        return  usuarioService.borrarUsuario(idUsuario);
+    }
 }

@@ -88,7 +88,7 @@ public class MockitoTest {
         Mockito.when(usuarioRepository.save(any(Usuario.class))).thenReturn(usuarioMock);
 
         // Act
-        Result result = usuarioService.agregarUsuario(nombre);
+        Result result = usuarioService.agregarUsuario(usuarioMock);
 
         // Assert
         Assertions.assertTrue(result.correct);
