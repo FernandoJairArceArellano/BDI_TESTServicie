@@ -60,8 +60,12 @@ public class TransaccionService {
         }
         return result;
     }
-    
-    public List<Transaccion> getAllTransaccion(){
+
+    public List<Transaccion> getAllTransaccion() {
         return transaccionRepository.findAll();
+    }
+
+    public List<Transaccion> obtenerTransaccionesPorContrato(Contrato contrato) {
+        return transaccionRepository.findByContrato(contrato);
     }
 }

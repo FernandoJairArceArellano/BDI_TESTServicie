@@ -96,4 +96,8 @@ public class ContratoRestController {
         return contratoService.obtenerContratoPorCodigo(codigoContrato);
     }
 
+    @GetMapping("/por-id-contrato")
+    public Result getContratoPorId(@RequestParam int idContrato) {
+        return contratoService.obtenerContratoPorId(idContrato);
+    }
 }

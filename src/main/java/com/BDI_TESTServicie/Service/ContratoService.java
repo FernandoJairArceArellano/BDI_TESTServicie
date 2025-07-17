@@ -80,6 +80,10 @@ public class ContratoService {
         return contratoRepository.findAll();
     }
 
+    public Contrato getById (int idContrato){
+        return contratoRepository.findByIdContrato(idContrato);
+    }
+    
     public Result<Contrato> obtenerContratoPorCodigo(String codigoContrato) {
         Result<Contrato> result = new Result<>();
         try {
@@ -94,6 +98,25 @@ public class ContratoService {
         } catch (Exception ex) {
             result.correct = false;
             result.errorMessage = ex.getMessage();
+            result.ex = ex;
+        }
+        return result;
+    }
+
+    public Result<Contrato> obtenerContratoPorId(int idContrato) {
+        Result<Contrato> result = new Result<>();
+        try {
+            Contrato contrato = contratoRepository.findByIdContrato(idContrato);
+            if (contrato != null) {
+                result.correct = true;
+                result.object = contrato;
+            } else {
+                result.correct = false;
+                result.errorMessage = "Contrato no encontrado con el ID: " + idContrato;
+            }
+        } catch (Exception ex) {
+            result.correct = false;
+            result.errorMessage = ex.getLocalizedMessage();
             result.ex = ex;
         }
         return result;

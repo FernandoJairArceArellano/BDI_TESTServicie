@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 public interface ContratoRepository extends JpaRepository<Contrato, Integer> {
 
     Contrato findByCodigoContrato(String codigoContrato);
+    
+    Contrato findByIdContrato(int idContrato);
 
     List<Contrato> findByUsuario_IdUsuario(int idUsuario);
 
