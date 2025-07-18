@@ -33,13 +33,13 @@ public class Transaccion {
     private NodoEntrega nodoEntrega;
 
     @Column(name = "CANTIDADASIGNADAENTREGA")
-    private BigDecimal cantidadAsignadaEntregada;
+    private BigDecimal cantidadAsignadaEntrega;
 
     @Column(name = "CANTIDADASIGNADARECEPCION")
     private BigDecimal cantidadAsignadaRecepcion;
 
     @Column(name = "CANTIDADNOMINADAENTREGA")
-    private BigDecimal cantidadNominadaEntregada;
+    private BigDecimal cantidadNominadaEntrega;
 
     @Column(name = "CANTIDADNOMINADARECEPCION")
     private BigDecimal cantidadNominadaRecepcion;
@@ -94,12 +94,12 @@ public class Transaccion {
         this.nodoEntrega = nodoEntrega;
     }
 
-    public BigDecimal getCantidadAsignadaEntregada() {
-        return cantidadAsignadaEntregada;
+    public BigDecimal getCantidadAsignadaEntrega() {
+        return cantidadAsignadaEntrega;
     }
 
-    public void setCantidadAsignadaEntregada(BigDecimal cantidadAsignadaEntregada) {
-        this.cantidadAsignadaEntregada = cantidadAsignadaEntregada;
+    public void setCantidadAsignadaEntrega(BigDecimal cantidadAsignadaEntrega) {
+        this.cantidadAsignadaEntrega = cantidadAsignadaEntrega;
     }
 
     public BigDecimal getCantidadAsignadaRecepcion() {
@@ -110,12 +110,12 @@ public class Transaccion {
         this.cantidadAsignadaRecepcion = cantidadAsignadaRecepcion;
     }
 
-    public BigDecimal getCantidadNominadaEntregada() {
-        return cantidadNominadaEntregada;
+    public BigDecimal getCantidadNominadaEntrega() {
+        return cantidadNominadaEntrega;
     }
 
-    public void setCantidadNominadaEntregada(BigDecimal cantidadNominadaEntregada) {
-        this.cantidadNominadaEntregada = cantidadNominadaEntregada;
+    public void setCantidadNominadaEntrega(BigDecimal cantidadNominadaEntrega) {
+        this.cantidadNominadaEntrega = cantidadNominadaEntrega;
     }
 
     public BigDecimal getCantidadNominadaRecepcion() {

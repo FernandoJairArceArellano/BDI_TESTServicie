@@ -53,6 +53,11 @@ public class TransaccionRestController {
         }
     }
 
+    @PostMapping("/add")
+    public Result addTransaccion(@RequestBody Transaccion transaccion) {
+        return transaccionService.addTransaccion(transaccion);
+    }
+
     @GetMapping("/transacciones")
     public Result getAllTransacciones() {
         Result result = new Result();

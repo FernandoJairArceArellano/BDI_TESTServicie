@@ -98,9 +98,9 @@ public class RegistroSistemaService {
             transaccion.setNodoEntrega(nodoEntrega);
             transaccion.setNodoRecepcion(nodoRecepccion);
 
-            transaccion.setCantidadAsignadaEntregada(registro.transaccion.getCantidadAsignadaEntregada());
+            transaccion.setCantidadAsignadaEntrega(registro.transaccion.getCantidadAsignadaEntrega());
             transaccion.setCantidadAsignadaRecepcion(registro.transaccion.getCantidadAsignadaRecepcion());
-            transaccion.setCantidadNominadaEntregada(registro.transaccion.getCantidadNominadaEntregada());
+            transaccion.setCantidadNominadaEntrega(registro.transaccion.getCantidadNominadaEntrega());
             transaccion.setCantidadNominadaRecepcion(registro.transaccion.getCantidadNominadaRecepcion());
             transaccion.setGasEnExceso(registro.transaccion.getGasEnExceso());
             transaccion.setCargoUso(registro.transaccion.getCargoUso());

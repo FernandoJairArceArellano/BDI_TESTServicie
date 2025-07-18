@@ -130,8 +130,8 @@ public class RegistroRestController {
                     registroSistema.transaccion = new Transaccion();
                     registroSistema.transaccion.setCantidadNominadaRecepcion(new BigDecimal(row.getCell(9).getNumericCellValue()));
                     registroSistema.transaccion.setCantidadAsignadaRecepcion(new BigDecimal(row.getCell(10).getNumericCellValue()));
-                    registroSistema.transaccion.setCantidadNominadaEntregada(new BigDecimal(row.getCell(11).getNumericCellValue()));
-                    registroSistema.transaccion.setCantidadAsignadaEntregada(new BigDecimal(row.getCell(12).getNumericCellValue()));
+                    registroSistema.transaccion.setCantidadNominadaEntrega(new BigDecimal(row.getCell(11).getNumericCellValue()));
+                    registroSistema.transaccion.setCantidadAsignadaEntrega(new BigDecimal(row.getCell(12).getNumericCellValue()));
                     registroSistema.transaccion.setGasEnExceso(new BigDecimal(row.getCell(13).getNumericCellValue()));
                     registroSistema.transaccion.setTarifaExcesoFirme(new BigDecimal(row.getCell(14).getNumericCellValue()));
                     registroSistema.transaccion.setTarifaUsoInterrumpible(new BigDecimal(row.getCell(15).getNumericCellValue()));
@@ -212,11 +212,11 @@ public class RegistroRestController {
                         listaErrores.add(new ResultFile(fila, "CantidadAsignadaRecepcion", "Debe especificar la cantidad asignada de recepción"));
                     }
 
-                    if (registro.transaccion.getCantidadNominadaEntregada() == null) {
+                    if (registro.transaccion.getCantidadNominadaEntrega() == null) {
                         listaErrores.add(new ResultFile(fila, "CantidadNominalEntregada", "Debe especificar la cantidad nominal de entrega"));
                     }
 
-                    if (registro.transaccion.getCantidadAsignadaEntregada() == null) {
+                    if (registro.transaccion.getCantidadAsignadaEntrega() == null) {
                         listaErrores.add(new ResultFile(fila, "CantidadAsignadaEntregada", "Debe especificar la cantidad asignada de entrega"));
                     }
 

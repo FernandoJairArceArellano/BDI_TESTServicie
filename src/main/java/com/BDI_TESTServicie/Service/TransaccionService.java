@@ -29,30 +29,34 @@ public class TransaccionService {
     @Autowired
     private NodoRecepccionRepository nodoRecepccionRepository;
 
-    public Result<?> addTransaccion(String codigoContrato, String codigoNodoEntrega, String codigoNodoRecepcion, Transaccion transaccion) {
+    public Result addTransaccion(Transaccion transaccion) {
         Result result = new Result();
-
         try {
-
-            Contrato contrato = contratoRepository.findByCodigoContrato(codigoContrato);
-            transaccion.setContrato(contrato);
-            NodoEntrega nodoEntrega = nodoEntregaRepository.findByCodigoNodo(codigoNodoEntrega);
+            Contrato contratoBD = contratoRepository.findByCodigoContrato(
+                    transaccion.getContrato().getCodigoContrato()
+            );
+            transaccion.setContrato(contratoBD);
+            NodoEntrega nodoEntrega = nodoEntregaRepository.findByCodigoNodo(
+                    transaccion.getNodoEntrega().getCodigoNodo()
+            );
             transaccion.setNodoEntrega(nodoEntrega);
-            NodoRecepccion nodoRecepccion = nodoRecepccionRepository.findByCodigoNodo(codigoNodoRecepcion);
+            NodoRecepccion nodoRecepccion = nodoRecepccionRepository.findByCodigoNodo(
+                    transaccion.getNodoRecepcion().getCodigoNodo()
+            );
             transaccion.setNodoRecepcion(nodoRecepccion);
-            transaccion.setCantidadAsignadaEntregada(BigDecimal.TEN);
-            transaccion.setCantidadAsignadaRecepcion(BigDecimal.TEN);
-            transaccion.setCantidadNominadaEntregada(BigDecimal.TEN);
-            transaccion.setCantidadNominadaRecepcion(BigDecimal.TEN);
-            transaccion.setGasEnExceso(BigDecimal.TEN);
-            transaccion.setCargoUso(BigDecimal.TEN);
-            transaccion.setCargoGasEnExceso(BigDecimal.TEN);
-            transaccion.setTarifaExcesoFirme(BigDecimal.TEN);
-            transaccion.setTarifaUsoInterrumpible(BigDecimal.TEN);
-            transaccion.setTotalAFacturar(BigDecimal.TEN);
+            
+//            transaccion.setCantidadAsignadaEntregada(BigDecimal.TEN);
+//            transaccion.setCantidadAsignadaRecepcion(BigDecimal.TEN);
+//            transaccion.setCantidadNominadaEntregada(BigDecimal.TEN);
+//            transaccion.setCantidadNominadaRecepcion(BigDecimal.TEN);
+//            transaccion.setGasEnExceso(BigDecimal.TEN);
+//            transaccion.setCargoUso(BigDecimal.TEN);
+//            transaccion.setCargoGasEnExceso(BigDecimal.TEN);
+//            transaccion.setTarifaExcesoFirme(BigDecimal.TEN);
+//            transaccion.setTarifaUsoInterrumpible(BigDecimal.TEN);
+//            transaccion.setTotalAFacturar(BigDecimal.TEN);
             transaccionRepository.save(transaccion);
             result.correct = true;
-            return result;
         } catch (Exception ex) {
             result.correct = false;
             result.errorMessage = ex.getLocalizedMessage();
