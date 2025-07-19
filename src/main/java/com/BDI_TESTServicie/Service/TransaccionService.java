@@ -9,7 +9,6 @@ import com.BDI_TESTServicie.JpaRepository.ContratoRepository;
 import com.BDI_TESTServicie.JpaRepository.NodoEntregaRepository;
 import com.BDI_TESTServicie.JpaRepository.NodoRecepccionRepository;
 import com.BDI_TESTServicie.JpaRepository.TransaccionRepository;
-import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +34,8 @@ public class TransaccionService {
             Contrato contratoBD = contratoRepository.findByCodigoContrato(
                     transaccion.getContrato().getCodigoContrato()
             );
+            
+            
             transaccion.setContrato(contratoBD);
             NodoEntrega nodoEntrega = nodoEntregaRepository.findByCodigoNodo(
                     transaccion.getNodoEntrega().getCodigoNodo()
@@ -45,16 +46,6 @@ public class TransaccionService {
             );
             transaccion.setNodoRecepcion(nodoRecepccion);
             
-//            transaccion.setCantidadAsignadaEntregada(BigDecimal.TEN);
-//            transaccion.setCantidadAsignadaRecepcion(BigDecimal.TEN);
-//            transaccion.setCantidadNominadaEntregada(BigDecimal.TEN);
-//            transaccion.setCantidadNominadaRecepcion(BigDecimal.TEN);
-//            transaccion.setGasEnExceso(BigDecimal.TEN);
-//            transaccion.setCargoUso(BigDecimal.TEN);
-//            transaccion.setCargoGasEnExceso(BigDecimal.TEN);
-//            transaccion.setTarifaExcesoFirme(BigDecimal.TEN);
-//            transaccion.setTarifaUsoInterrumpible(BigDecimal.TEN);
-//            transaccion.setTotalAFacturar(BigDecimal.TEN);
             transaccionRepository.save(transaccion);
             result.correct = true;
         } catch (Exception ex) {
