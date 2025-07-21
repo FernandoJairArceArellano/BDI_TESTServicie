@@ -57,4 +57,9 @@ public class ZonaService {
     public List<ZonaInyeccion> getAllZonasInyeccion() {
         return zonaInyeccionRepository.findAll();
     }
+
+    public ZonaExtraccion getExtraccionByNombreZona(String nombreZona) {
+        return zonaExtraccionRepository.findByNombreZona(nombreZona);
+    }
+
 }

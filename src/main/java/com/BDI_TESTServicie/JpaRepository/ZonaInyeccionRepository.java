@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface ZonaInyeccionRepository extends JpaRepository<ZonaInyeccion, Integer> {
 
     ZonaInyeccion findByNombreZona(String nombreZona);
+
 }

@@ -16,7 +16,7 @@ public class ZonaExtraccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(description = "Identificador unico de la Zona de Extraccion")
-    
+
     @Column(name = "IDZONAEXTRACCION")
     private int idZonaExtraccion;
 
@@ -38,4 +38,5 @@ public class ZonaExtraccion {
     public void setNombreZona(String nombreZona) {
         this.nombreZona = nombreZona;
     }
+
 }

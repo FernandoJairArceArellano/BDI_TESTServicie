@@ -3,6 +3,8 @@ package com.BDI_TESTServicie.RestController;
 import com.BDI_TESTServicie.JPA.Result;
 import com.BDI_TESTServicie.JPA.ZonaExtraccion;
 import com.BDI_TESTServicie.JPA.ZonaInyeccion;
+import com.BDI_TESTServicie.Service.ContratoService;
+import com.BDI_TESTServicie.Service.UsuarioService;
 import com.BDI_TESTServicie.Service.ZonaService;
 import java.util.Comparator;
 import java.util.List;
@@ -20,6 +22,12 @@ public class ZonasRestController {
 
     @Autowired
     private ZonaService zonaService;
+
+    @Autowired
+    private ContratoService contratoService;
+
+    @Autowired
+    private UsuarioService usuarioServicie;
 
     @GetMapping("/zonaextraccion")
     public Result getAllZonasExtraccion() {
@@ -56,4 +64,5 @@ public class ZonasRestController {
         }
         return result;
     }
+
 }
