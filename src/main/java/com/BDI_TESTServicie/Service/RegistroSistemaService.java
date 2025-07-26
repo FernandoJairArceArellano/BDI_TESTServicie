@@ -2,7 +2,7 @@ package com.BDI_TESTServicie.Service;
 
 import com.BDI_TESTServicie.JPA.Contrato;
 import com.BDI_TESTServicie.JPA.NodoEntrega;
-import com.BDI_TESTServicie.JPA.NodoRecepccion;
+import com.BDI_TESTServicie.JPA.NodoRecepcion;
 import com.BDI_TESTServicie.JPA.RegistroSistema;
 import com.BDI_TESTServicie.JPA.Result;
 import com.BDI_TESTServicie.JPA.ResultFile;
@@ -12,7 +12,6 @@ import com.BDI_TESTServicie.JPA.ZonaExtraccion;
 import com.BDI_TESTServicie.JPA.ZonaInyeccion;
 import com.BDI_TESTServicie.JpaRepository.ContratoRepository;
 import com.BDI_TESTServicie.JpaRepository.NodoEntregaRepository;
-import com.BDI_TESTServicie.JpaRepository.NodoRecepccionRepository;
 import com.BDI_TESTServicie.JpaRepository.TransaccionRepository;
 import com.BDI_TESTServicie.JpaRepository.UsuarioRepository;
 import com.BDI_TESTServicie.JpaRepository.ZonaExtraccionRepository;
@@ -21,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.BDI_TESTServicie.JpaRepository.NodoRecepcionRepository;
 
 @Service
 public class RegistroSistemaService {
@@ -35,7 +35,7 @@ public class RegistroSistemaService {
     private NodoEntregaRepository nodoEntregaRepository;
 
     @Autowired
-    private NodoRecepccionRepository nodoRecepccionRepository;
+    private NodoRecepcionRepository nodoRecepccionRepository;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -74,8 +74,8 @@ public class RegistroSistemaService {
                 nodoEntrega = nodoEntregaRepository.save(registro.nodoEntrega);
             }
 
-            // Validar o insertar NodoRecepccion
-            NodoRecepccion nodoRecepccion = nodoRecepccionRepository.findByCodigoNodo(registro.nodoRecepccion.getCodigoNodo());
+            // Validar o insertar NodoRecepcion
+            NodoRecepcion nodoRecepccion = nodoRecepccionRepository.findByCodigoNodo(registro.nodoRecepccion.getCodigoNodo());
             if (nodoRecepccion == null) {
                 nodoRecepccion = nodoRecepccionRepository.save(registro.nodoRecepccion);
             }

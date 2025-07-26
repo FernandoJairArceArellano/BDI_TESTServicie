@@ -2,7 +2,7 @@ package com.BDI_TESTServicie.RestController;
 
 import com.BDI_TESTServicie.JPA.Contrato;
 import com.BDI_TESTServicie.JPA.NodoEntrega;
-import com.BDI_TESTServicie.JPA.NodoRecepccion;
+import com.BDI_TESTServicie.JPA.NodoRecepcion;
 import com.BDI_TESTServicie.JPA.RegistroSistema;
 import com.BDI_TESTServicie.JPA.Result;
 import com.BDI_TESTServicie.JPA.ResultFile;
@@ -113,7 +113,7 @@ public class RegistroRestController {
                     registroSistema.usuario.setNombre(row.getCell(2).toString());
 
                     // Registrar el contrato y zonas de inyeccion y extraccion a contrato
-                    registroSistema.nodoRecepccion = new NodoRecepccion();
+                    registroSistema.nodoRecepccion = new NodoRecepcion();
                     registroSistema.nodoRecepccion.setCodigoNodo(row.getCell(3).toString());
                     registroSistema.nodoRecepccion.setNombreNodoComercial(row.getCell(4).toString());
 

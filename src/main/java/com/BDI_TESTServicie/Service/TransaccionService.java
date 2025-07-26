@@ -2,16 +2,16 @@ package com.BDI_TESTServicie.Service;
 
 import com.BDI_TESTServicie.JPA.Contrato;
 import com.BDI_TESTServicie.JPA.NodoEntrega;
-import com.BDI_TESTServicie.JPA.NodoRecepccion;
+import com.BDI_TESTServicie.JPA.NodoRecepcion;
 import com.BDI_TESTServicie.JPA.Result;
 import com.BDI_TESTServicie.JPA.Transaccion;
 import com.BDI_TESTServicie.JpaRepository.ContratoRepository;
 import com.BDI_TESTServicie.JpaRepository.NodoEntregaRepository;
-import com.BDI_TESTServicie.JpaRepository.NodoRecepccionRepository;
 import com.BDI_TESTServicie.JpaRepository.TransaccionRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.BDI_TESTServicie.JpaRepository.NodoRecepcionRepository;
 
 @Service
 public class TransaccionService {
@@ -26,7 +26,7 @@ public class TransaccionService {
     private NodoEntregaRepository nodoEntregaRepository;
 
     @Autowired
-    private NodoRecepccionRepository nodoRecepccionRepository;
+    private NodoRecepcionRepository nodoRecepccionRepository;
 
     public Result addTransaccion(Transaccion transaccion) {
         Result result = new Result();
@@ -41,7 +41,7 @@ public class TransaccionService {
                     transaccion.getNodoEntrega().getCodigoNodo()
             );
             transaccion.setNodoEntrega(nodoEntrega);
-            NodoRecepccion nodoRecepccion = nodoRecepccionRepository.findByCodigoNodo(
+            NodoRecepcion nodoRecepccion = nodoRecepccionRepository.findByCodigoNodo(
                     transaccion.getNodoRecepcion().getCodigoNodo()
             );
             transaccion.setNodoRecepcion(nodoRecepccion);
@@ -63,4 +63,12 @@ public class TransaccionService {
     public List<Transaccion> obtenerTransaccionesPorContrato(Contrato contrato) {
         return transaccionRepository.findByContrato(contrato);
     }
+    
+//    public List<Transaccion> obtenerTransaccionesPorCodigoNodoEntrega(NodoEntrega nodoEntrega){
+//        return transaccionRepository.findByNodoEntrega(nodoEntrega);
+//    }
+//    
+//    public List<Transaccion> obtenerTransaccionesPorCodigoNodoRecepccion(NodoRecepcion nodoRecepcion){
+//        return transaccionRepository.findByNodoRecepccion(nodoRecepcion);
+//    }
 }

@@ -26,7 +26,7 @@ public class Transaccion {
 
     @OneToOne
     @JoinColumn(name = "NODORECEPCION")
-    private NodoRecepccion nodoRecepcion;
+    private NodoRecepcion nodoRecepcion;
 
     @OneToOne
     @JoinColumn(name = "NODOENTREGA")
@@ -78,11 +78,11 @@ public class Transaccion {
         this.contrato = contrato;
     }
 
-    public NodoRecepccion getNodoRecepcion() {
+    public NodoRecepcion getNodoRecepcion() {
         return nodoRecepcion;
     }
 
-    public void setNodoRecepcion(NodoRecepccion nodoRecepcion) {
+    public void setNodoRecepcion(NodoRecepcion nodoRecepcion) {
         this.nodoRecepcion = nodoRecepcion;
     }
 

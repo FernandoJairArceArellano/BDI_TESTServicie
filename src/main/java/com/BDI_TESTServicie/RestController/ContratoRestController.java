@@ -6,6 +6,7 @@ import com.BDI_TESTServicie.JPA.Usuario;
 import com.BDI_TESTServicie.Service.ContratoService;
 import com.BDI_TESTServicie.Service.UsuarioService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -67,6 +68,29 @@ public class ContratoRestController {
             result.errorMessage = ex.getMessage();
             result.ex = ex;
         }
+        return result;
+    }
+    
+    @GetMapping("/por-usuario-id-Vista")
+    public Result getContratosPorUsuarioIdVista(@RequestParam int idUsuario) {
+        Result result = new Result();
+        try {
+            Optional<Usuario> usuario = usuarioService.getById(idUsuario);
+
+            if (usuario != null) {
+                List<Contrato> contratos = contratoService.obtenerContratosPorIdUsuario(idUsuario);
+                result.correct = true;
+                result.objects = contratos;
+            } else {
+                result.correct = false;
+                result.errorMessage = "Usuario no encontrado con el id: " + idUsuario;
+            }
+        } catch (Exception ex) {
+            result.correct = false;
+            result.errorMessage = ex.getMessage();
+            result.ex = ex;
+        }
+
         return result;
     }
 

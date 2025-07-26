@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "UGTP_TBL_NODO_RECEPCCION")
 @Schema(description = "Entidad que representa al nodo de Recepccion", examples = {"V045", "V025"})
-public class NodoRecepccion {
+public class NodoRecepcion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

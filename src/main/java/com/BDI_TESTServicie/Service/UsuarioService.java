@@ -7,6 +7,7 @@ import com.BDI_TESTServicie.JpaRepository.ContratoRepository;
 import com.BDI_TESTServicie.JpaRepository.TransaccionRepository;
 import com.BDI_TESTServicie.JpaRepository.UsuarioRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +46,10 @@ public class UsuarioService {
         return usuarioRepository.findByNombre(nombre);
     }
 
+    public Optional<Usuario> getById(int idUsuario) {
+        return usuarioRepository.findById(idUsuario);
+    }
+
     public Result<Usuario> obtenerUsuarioPorNombre(String nombre) {
         Result<Usuario> result = new Result<>();
         try {
@@ -55,6 +60,25 @@ public class UsuarioService {
             } else {
                 result.correct = false;
                 result.errorMessage = "Usuario no encontrado con el nombre de: " + nombre;
+            }
+        } catch (Exception ex) {
+            result.correct = false;
+            result.errorMessage = ex.getLocalizedMessage();
+            result.ex = ex;
+        }
+        return result;
+    }
+
+    public Result<Usuario> obtenerUsuarioPorId(int idUsuario) {
+        Result<Usuario> result = new Result<>();
+        try {
+            Optional<Usuario> usuarioOptional = usuarioRepository.findById(idUsuario);
+            if (usuarioOptional.isPresent()) {
+                result.correct = true;
+                result.object = usuarioOptional.get();
+            } else {
+                result.correct = false;
+                result.errorMessage = "Usuario no encontrado con el id: " + idUsuario;
             }
         } catch (Exception ex) {
             result.correct = false;
@@ -113,4 +137,19 @@ public class UsuarioService {
         return result;
     }
 
+    public List<Usuario> getUsuariosPorNodoRecepccion(String codigoNodo) {
+        return usuarioRepository.busquedaDeUsuariosPorNombreNodoRecepccion(codigoNodo);
+    }
+
+    public List<Usuario> getUsuariosPorNodoEntrega(String codigoNodo) {
+        return usuarioRepository.busquedaDeUsuariosPorNombreNodoEntrega(codigoNodo);
+    }
+    
+    public List<Usuario> getUsuarioPorZonaExtraccion(String nombreZona){
+        return usuarioRepository.busquedaUsuarioPorZonaExtraccion(nombreZona);
+    }
+    
+    public List<Usuario> getUsuarioPorZonaInyeccion(String nombreZona){
+        return usuarioRepository.busquedaUsuarioPorZonaInyeccion(nombreZona);
+    }
 }

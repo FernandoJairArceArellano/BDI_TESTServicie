@@ -11,7 +11,7 @@ public class RegistroSistema {
     
     public NodoEntrega nodoEntrega;
     
-    public NodoRecepccion nodoRecepccion;
+    public NodoRecepcion nodoRecepccion;
 
     public Transaccion transaccion;
     

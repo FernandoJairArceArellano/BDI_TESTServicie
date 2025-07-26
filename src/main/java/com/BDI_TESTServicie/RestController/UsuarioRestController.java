@@ -49,13 +49,19 @@ public class UsuarioRestController {
         return usuarioService.obtenerUsuarioPorNombre(nombre);
     }
 
+    @GetMapping("/por-id")
+    public Result getUsuarioPorId(@RequestParam int idUsuario) {
+        return usuarioService.obtenerUsuarioPorId(idUsuario);
+    }
+
     @PostMapping("/addUsuario")
-    public Result agregarUsuario(@RequestBody Usuario usuario){
+    public Result agregarUsuario(@RequestBody Usuario usuario) {
         return usuarioService.agregarUsuario(usuario);
     }
-    
+
     @DeleteMapping("/delete/{idUsuario}")
-    public Result deleteUsuario(@PathVariable int idUsuario){
-        return  usuarioService.borrarUsuario(idUsuario);
+    public Result deleteUsuario(@PathVariable int idUsuario) {
+        return usuarioService.borrarUsuario(idUsuario);
     }
+    
 }
