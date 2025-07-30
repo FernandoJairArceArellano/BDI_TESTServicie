@@ -3,7 +3,10 @@ package com.BDI_TESTServicie.RestController;
 import com.BDI_TESTServicie.JPA.Result;
 import com.BDI_TESTServicie.JPA.Usuario;
 import com.BDI_TESTServicie.Service.UsuarioService;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/usuario/v1")
 @CrossOrigin(origins = "http://localhost:8080")
+@RequiredArgsConstructor
 public class UsuarioRestController {
 
     @Autowired
@@ -29,8 +33,11 @@ public class UsuarioRestController {
         Result result = new Result();
         try {
             List<Usuario> usuarios = usuarioService.getAll();
+            List<Usuario> usuariosOrdenados = usuarios.stream()
+                    .sorted(Comparator.comparing(Usuario::getIdUsuario))
+                    .collect(Collectors.toList());
             result.correct = true;
-            result.objects = List.copyOf(usuarios);
+            result.objects = List.copyOf(usuariosOrdenados);
         } catch (Exception ex) {
             result.correct = false;
             result.errorMessage = ex.getLocalizedMessage();

@@ -1,13 +1,14 @@
-package com.BDI_TESTServicie.security;
+package com.BDI_TESTServicie.JPA;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class AuthRequest {
+
     private String username;
     private String password;
 }
