@@ -70,7 +70,7 @@ public class ContratoRestController {
         }
         return result;
     }
-    
+
     @GetMapping("/por-usuario-id-Vista")
     public Result getContratosPorUsuarioIdVista(@RequestParam int idUsuario) {
         Result result = new Result();

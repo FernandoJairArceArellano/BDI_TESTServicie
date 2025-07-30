@@ -144,12 +144,12 @@ public class UsuarioService {
     public List<Usuario> getUsuariosPorNodoEntrega(String codigoNodo) {
         return usuarioRepository.busquedaDeUsuariosPorNombreNodoEntrega(codigoNodo);
     }
-    
-    public List<Usuario> getUsuarioPorZonaExtraccion(String nombreZona){
+
+    public List<Usuario> getUsuarioPorZonaExtraccion(String nombreZona) {
         return usuarioRepository.busquedaUsuarioPorZonaExtraccion(nombreZona);
     }
-    
-    public List<Usuario> getUsuarioPorZonaInyeccion(String nombreZona){
+
+    public List<Usuario> getUsuarioPorZonaInyeccion(String nombreZona) {
         return usuarioRepository.busquedaUsuarioPorZonaInyeccion(nombreZona);
     }
 }

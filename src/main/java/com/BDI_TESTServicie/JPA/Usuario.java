@@ -7,13 +7,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedStoredProcedureQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.ParameterMode;
 import jakarta.persistence.StoredProcedureParameter;
 import jakarta.persistence.Table;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "UGTP_TBL_Usuario")
 @NamedStoredProcedureQuery(
@@ -52,7 +60,7 @@ import java.util.List;
             @StoredProcedureParameter(mode = ParameterMode.REF_CURSOR, name = "pCursor", type = void.class)
         }
 )
-public class Usuario {
+public class Usuario{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,33 +70,16 @@ public class Usuario {
     @Column(name = "NOMBRE")
     private String nombre;
 
+    private String username;
+    
+    private String password;
+
+    @OneToOne
+    @JoinColumn(name = "Rol")
+    private Rol rol;
+
     @OneToMany(mappedBy = "usuario")
     @JsonManagedReference
     @JsonIgnore
     private List<Contrato> contratos;
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public List<Contrato> getContratos() {
-        return contratos;
-    }
-
-    public void setContratos(List<Contrato> contratos) {
-        this.contratos = contratos;
-    }
-
 }
